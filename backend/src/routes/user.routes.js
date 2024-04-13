@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import uploadMulter from '../middlewares/multer.middleware.js'
 import { loginUser, registerUser } from '../controllers/user.controller.js'
+import authUser from '../middlewares/auth.middleware.js'
 const router = Router()
 
 router
@@ -10,7 +11,7 @@ router
     registerUser
   )
 
-router.route('/login', loginUser)
+router.route('/login').post(loginUser)
 
 //secured routes will go here
 //...
