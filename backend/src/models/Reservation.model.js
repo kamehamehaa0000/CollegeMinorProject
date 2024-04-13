@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 const reservationSchema = new mongoose.Schema(
   {
     time: { type: String, required: true },
+    date: { type: String, required: true },
     madeBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

@@ -3,8 +3,8 @@ import { loginAdmin, registerAdmin } from '../controllers/admin.controller'
 import authAdmin from '../middlewares/adminAuth.middleware'
 const router = Router()
 
-router.route('/register').post(registerAdmin)
-router.route('/login').post(loginAdmin)
+router.route('admin/register').post(registerAdmin)
+router.route('admin/login').post(loginAdmin)
 
 //secured routes will go here
 //...
