@@ -13,6 +13,7 @@ const foodItemSchema = new mongoose.Schema(
       max: [5, "can't rate above that"],
     },
     description: { type: String, required: true },
+    category: { type: String, required: true },
     availability: { type: String, required: true }, //required for availability is not fixed yet
   },
   { timestamps: true }
