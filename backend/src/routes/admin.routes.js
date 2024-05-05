@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { loginAdmin, registerAdmin } from '../controllers/admin.controller'
-import authAdmin from '../middlewares/adminAuth.middleware'
+import { loginAdmin, registerAdmin } from '../controllers/admin.controller.js'
+import authAdmin from '../middlewares/adminAuth.middleware.js'
 const router = Router()
 
 router.route('admin/register').post(registerAdmin)

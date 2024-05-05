@@ -32,3 +32,5 @@ const deleteFromCloudinary = async (url) => {
     console.error(`Error deleting image from Cloudinary: ${error.message}`)
   }
 }
+
+export default uploadOnCloudinary

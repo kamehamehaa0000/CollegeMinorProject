@@ -14,11 +14,13 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new errorHandler(400, 'user already exists')
   }
   const profileImgPath = req.files?.profileImage[0]?.path
+  console.log(profileImgPath)
   if (!profileImgPath) {
     throw new errorHandler(400, 'Profile image file is required')
   }
 
   const profilePic = await uploadOnCloudinary(profileImgPath)
+  console.log(profilePic)
   if (!profilePic) {
     throw new errorHandler(400, 'profile pic upload failed')
   }
@@ -28,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     username: username.toLowerCase(),
-    profileImage: profilePic,
+    profileImage: profilePic.url,
   })
   const responseUser = await User.findById(newUser._id).select('-password')
   if (!responseUser) {

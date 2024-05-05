@@ -1,6 +1,6 @@
-import User from '../models/User.model'
-import asyncHandler from '../utlities/asyncHandler'
-import errorHandler from '../utlities/errorHandler'
+import User from '../models/User.model.js'
+import asyncHandler from '../utlities/asyncHandler.js'
+import errorHandler from '../utlities/errorHandler.js'
 
 const verifyJWT = asyncHandler(async (req, res, next) => {
   const token = req.body || req.header('Authorization')?.replace('Bearer ', '')

@@ -14,7 +14,7 @@ adminSchema.pre('save', async function (next) {
   next()
 })
 
-userSchema.methods.generateToken = function () {
+adminSchema.methods.generateToken = function () {
   return jwt.sign(
     {
       _id: this._id,
@@ -29,5 +29,5 @@ userSchema.methods.generateToken = function () {
 adminSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password)
 }
-const Admin = mongoose.model('Admin', userSchema)
+const Admin = mongoose.model('Admin', adminSchema)
 export default Admin

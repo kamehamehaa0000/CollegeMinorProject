@@ -1,4 +1,4 @@
-import Admin from '../models/Admin.model'
+import Admin from '../models/Admin.model.js'
 import asyncHandler from '../utlities/asyncHandler.js'
 import errorHandler from '../utlities/errorHandler.js'
 

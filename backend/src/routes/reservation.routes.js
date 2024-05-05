@@ -11,11 +11,11 @@ import {
 const router = Router()
 
 //user operations
-Router.route('reservation/add').post(authUser, addReservation)
-Router.route('reservation/delete/:phoneNumber').delete(authUser, addReservation)
-Router.route('reservation/list/:userId').get(authUser, getAllReservationById)
+router.route('reservation/add').post(authUser, addReservation)
+router.route('reservation/delete/:phoneNumber').delete(authUser, addReservation)
+router.route('reservation/list/:userId').get(authUser, getAllReservationById)
 
 //admin operations
-Router.route('reservation/showall').get(authAdmin, getAllReservation)
+router.route('reservation/showall').get(authAdmin, getAllReservation)
 
 export default router

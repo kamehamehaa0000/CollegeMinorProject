@@ -19,4 +19,4 @@ class ErrorHandler extends Error {
     }
   }
 }
-export default errorHandler
+export default ErrorHandler

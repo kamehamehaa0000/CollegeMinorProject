@@ -1,5 +1,5 @@
 import Reservation from '../models/Reservation.model.js'
-import asyncHandler from '../utlities/asyncHandler'
+import asyncHandler from '../utlities/asyncHandler.js'
 import apiResponse from '../utlities/apiResponse.js'
 import errorHandler from '../utlities/errorHandler.js'
 
