@@ -2,10 +2,14 @@ import mongoose from 'mongoose'
 
 const orderSchema = new mongoose.Schema(
   {
-    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Cart' }],
-    totalPrice: { type: Number, required: true },
-    estTime: { type: String, required: true },
-    orderBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    cart: [
+      {
+        item: { type: mongoose.Schema.Types.ObjectId, ref: 'FoodItem' },
+        qty: { type: number, min: [1, 'atleast one qty is required'] },
+        totalPrice: { type: Number, required: true },
+      },
+    ],
+    placedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   },
   { timestamps: true }
 )
@@ -13,3 +17,10 @@ const orderSchema = new mongoose.Schema(
 const Order = mongoose.model('Order', orderSchema)
 
 export default Order
+/* 
+  add
+  get all (admin)
+  get one (by id or name)
+  delete by id
+
+*/

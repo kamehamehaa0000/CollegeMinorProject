@@ -22,3 +22,10 @@ const foodItemSchema = new mongoose.Schema(
 const FoodItem = mongoose.model('FoodItem', foodItemSchema)
 
 export default FoodItem
+/* 
+update 
+delete
+add
+get name
+get all
+*/

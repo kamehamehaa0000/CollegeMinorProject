@@ -11,3 +11,7 @@ const menuSchema = new mongoose.Schema(
 const Menu = mongoose.model('Menu', menuSchema)
 
 export default Menu
+/*
+  item delete
+  item add
+*/
