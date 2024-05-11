@@ -4,7 +4,7 @@ import { FaTwitter } from 'react-icons/fa'
 
 const Footer = () => {
   return (
-    <div className="footer w-full md:text-md bg-[#468764] p-2 md:p-8">
+    <div id="footer" className="footer w-full md:text-md bg-white p-2 md:p-8">
       <div className="flex items-center justify-between border-b-2 border-black">
         <h1 className="md:text-[4vw]  font-bold ">FoodTime.</h1>
         <h5 className="md:text-xl font-bold ">

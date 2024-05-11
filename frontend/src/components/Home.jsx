@@ -4,11 +4,11 @@ import Login from './Login'
 import Navbar from './Navbar'
 import Page1 from './Page1'
 import Page2 from './Page2'
-import Marque from './Shared/Marque'
 import Register from './Register'
 import { useCookies } from 'react-cookie'
 import OrderForm from './OrderForm'
-
+import Page3 from './Page3'
+import Reservation from './Reservation'
 const Home = () => {
   const [cookie, setCookie] = useCookies(['authToken'])
   return (
@@ -19,8 +19,8 @@ const Home = () => {
       <Navbar isLoggedIn={cookie.authToken} userDets={cookie.details} />
       <Page1 />
       <Page2 />
-
-      <Marque />
+      <Page3 />
+      <Reservation />
       <Footer />
     </div>
   )

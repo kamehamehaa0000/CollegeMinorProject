@@ -39,20 +39,20 @@ const Menu = () => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center  md:p-10 justify-center">
-      <div className="flex justify-start  w-full">
+    <div className="w-11/12 sm:w-10/12 flex flex-col items-center justify-center md:p-10">
+      <div className="flex justify-start px-4 py-4 w-full">
         <h1 className="text-4xl md:text-[3vw] underline underline-offset-8 text-black font-semibold">
           Menu
         </h1>
       </div>
 
-      <div className="w-12/12  my-3">
-        <div className="flex items-center gap-5">
+      <div className="w-full md:px-4  my-3">
+        <div className="flex flex-wrap  gap-3 items-center md:gap-5">
           <span
             onClick={() => {
               setSelectedCategory(null)
             }}
-            className={`border-b-2 hover:border-orange-500 font-semibold text-xl mt-4 ${
+            className={`border-b-2 hover:border-orange-500 font-semibold text-sm md:text-xl mt-4 ${
               selectedCategory === null ? 'border-orange-500' : ''
             }`}
           >
@@ -65,7 +65,7 @@ const Menu = () => {
                   setSelectedCategory(cat)
                 }}
                 key={index}
-                className={`border-b-2 hover:border-orange-500 font-semibold text-xl mt-4 ${
+                className={`border-b-2 hover:border-orange-500 font-semibold text-sm md:text-xl mt-4 ${
                   selectedCategory === cat ? 'border-orange-500' : ''
                 }`}
               >
@@ -74,7 +74,7 @@ const Menu = () => {
             ))}
         </div>
 
-        <div className="w-full rounded-lg mt-2 justify-start flex items-center flex-wrap shadow-lg">
+        <div className="w-full rounded-lg mt-2 justify-start flex flex-wrap shadow-lg">
           {(selectedCategory
             ? categoryItems[selectedCategory]
             : data.items || []

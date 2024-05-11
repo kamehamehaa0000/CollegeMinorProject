@@ -22,7 +22,7 @@ const OrderForm = () => {
   } = useCart()
   const { isOpenCart, setIsOpenCart } = useContext(cartModalContext)
   const [cookie, setCookie, removeCookie] = useCookies(['authToken'])
-  console.log(cookie.authToken, 'Token')
+
   const handlePlaceOrder = async () => {
     const cartDataForBackend = formatCartDataForBackend()
     try {
@@ -42,7 +42,11 @@ const OrderForm = () => {
       }
     } catch (error) {
       const message = extractErrorMessage(error.response.data)
-      alert(`Order not placed ${message}`)
+      if (!cookie.authToken) {
+        alert('Please Login First')
+      } else {
+        alert(`Order not placed ${message}`)
+      }
       setLoading(false)
     }
   }

@@ -1,35 +1,32 @@
 import React from 'react'
 import { useCart } from '../contexts/cart.context'
+import { IoAdd } from 'react-icons/io5'
+
 const DishCard = ({ name, description, price, image, id }) => {
   const { addItemToCart } = useCart()
   const handleAddToCart = () => {
     addItemToCart({ id, name, price })
   }
   return (
-    <div className=" group border-2 m-4  md:max-w-[240px] min-h-[400px] rounded-lg hover:scale-105 overflow-hidden bg-white">
-      <div>
+    <div className=" relative w-2/5  md:max-w-[300px] min-h-[350px] md:min-h-[370px] sm:w-2/12 group border-2 m-4 max-h-[400px] rounded-lg hover:scale-105 overflow-hidden bg-white">
+      <div className="h-6/12 overflow-hidden">
         <img
-          src={
-            image ||
-            'https://media.istockphoto.com/id/168855393/photo/gourmet-salad.jpg?s=612x612&w=0&k=20&c=bnDzlcKlZYR8NZQXOXb1fbF6x3sV8LnE5pu6rQA2LpI='
-          }
-          className="object-cover object-center h-[200px] group-hover:scale-105 sm:h-[250px] rounded-t-lg"
+          src={image}
+          className="object-cover object-center w-full h-[200px] group-hover:scale-105 rounded-t-lg"
           alt=""
         />
       </div>
-      <div className="p-2 overflow-hidden">
-        <h1 className="text-lg sm:text-xl font-bold">{name}</h1>
-        <p className="text-xs h-[100px] sm:text-sm font-medium">
-          {description}
-        </p>
+      <div className="p-2 h-2/5 overflow-hidden">
+        <h1 className="text-base md:text-[1vw] sm:text-xl font-bold">{name}</h1>
+        <p className="text-xs sm:text-sm font-medium">{description}</p>
       </div>
-      <div className="flex justify-between items-center p-2">
+      <div className=" absolute bottom-0 left-0 w-full flex h-2/12 bg-white justify-between items-center p-2">
         <span className="font-bold text-sm sm:text-base">₹{price}</span>
         <button
           onClick={handleAddToCart}
-          className="bg-green-400 p-2 rounded-full text-white font-bold text-xs sm:text-sm"
+          className="bg-green-400 px-3 py-1 md:p-2 rounded-full text-white font-bold text-2xl sm:text-sm"
         >
-          Add to cart
+          <IoAdd />
         </button>
       </div>
     </div>

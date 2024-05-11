@@ -3,14 +3,14 @@ const Page1 = () => {
   return (
     <div id="home" className="w-full flex items-center justify-center py-8">
       <div className="w-10/12 md:w-9/12 flex bg-[#e45834] flex-col md:flex-row rounded-xl shadow-lg overflow-hidden">
-        <div className="w-full md:w-1/2 p-4 md:p-8 h-full">
+        <div className="w-full md:w-1/2 p-4 md:p-10 h-full">
           <h1 className="text-4xl md:text-[3.6vw] text-white font-bold leading-tight">
             Something hot.
           </h1>
           <h1 className="text-4xl md:text-[3.6vw]  text-white font-bold leading-tight">
             Something tasty.
           </h1>
-          <p className="text-md md:text-[1.3vw] leading-none  my-1 md:my-4 text-white">
+          <p className="text-md md:text-[1.2vw] leading-none  my-1 md:my-4 text-white">
             At Food Time - your destination for menu viewing, reservations, and
             easy dine-in or takeaway ordering of Aromatic, Delicious, Flavorful,
             mouth-watering, Nutritious, Satisfying, Savory, Tasty, Yummy.
