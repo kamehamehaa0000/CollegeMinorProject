@@ -15,18 +15,34 @@ export const makeUnauthenticatedPOSTrequest = async (route, data) => {
     throw error // rethrowing error for caller to handle it
   }
 }
+export const makeUnauthenticatedGETrequest = async (route, data) => {
+  try {
+    const response = await axios
+      .post(`${ApiURL}${route}`, data)
+      .catch((error) => {
+        throw error
+      })
+    return response
+  } catch (error) {
+    console.log(error)
+    throw error // rethrowing error for caller to handle it
+  }
+}
 
 export const makeAuthenticatedPOSTrequest = async (route, data, token) => {
-  const response = await fetch(`${ApiURL}${route}`, {
-    method: 'POST',
-    headers: {
-      'content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(body),
-  })
-  const formattedResponse = await response.json()
-  return formattedResponse
+  try {
+    const response = await axios.post(`${ApiURL}${route}`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return response.data
+  } catch (error) {
+    // Handle error
+    console.error('Error making authenticated POST request:', error)
+    throw error
+  }
 }
 
 export const makeAuthenticatedGETrequest = async (route, token) => {

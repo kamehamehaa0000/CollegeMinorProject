@@ -3,21 +3,24 @@ import loginModalContext from './contexts/loginModal.context.js'
 import TextInput from './Shared/TextInput.jsx'
 import { makeUnauthenticatedPOSTrequest } from '../utilities/apiCall.js'
 import { dotStream } from 'ldrs'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
+import registrationModelContext from './contexts/registerationModal.context.js'
 dotStream.register()
 
 const Login = () => {
   const { isOpen, setIsOpen } = useContext(loginModalContext)
+  const { isOpenReg, setIsOpenReg } = useContext(registrationModelContext)
   const [cookie, setCookie, removeCookie] = useCookies(['authToken'])
-
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState(false)
 
   const handleLogin = async () => {
     let response
     try {
+      setLoading(true)
       response = await makeUnauthenticatedPOSTrequest('/user/login', {
         email,
         password,
@@ -35,15 +38,16 @@ const Login = () => {
           path: '/',
           expires: expirationDate,
         })
+        setLoading(false)
         alert('Login Successfull!!')
-        navigate('/home')
+        setIsOpen(false)
       }
     } catch (error) {
+      console.log(error)
       if (error.response && !error.response.data.success) {
-        alert(error.response.data.message)
+        alert('Login Failed')
       } else {
-        console.error('Unexpected error during login:', error)
-        // Handle unexpected error in UI or perform other actions
+        console.error('Unexpected error during login:')
       }
     }
   }
@@ -51,7 +55,7 @@ const Login = () => {
   const loadingAnimation = (
     <>
       <div className="flex flex-col m-4  rounded-md ">
-        <l-dot-stream size="80" speed="3" color="white" />
+        <l-dot-stream size="80" speed="3" color="black" />
       </div>
     </>
   )
@@ -63,7 +67,7 @@ const Login = () => {
             className="absolute top-0 left-0 w-full h-full bg-black opacity-70"
             onClick={() => setIsOpen(!isOpen)}
           ></div>
-          <div className="relative w-5/6 md:w-1/2 bg-white rounded-xl z-10">
+          <div className="relative w-5/6 lg:w-1/2  bg-white rounded-xl z-10">
             {loading ? (
               <div className="flex justify-center mt-4">{loadingAnimation}</div>
             ) : (
@@ -93,18 +97,23 @@ const Login = () => {
                   />
                   <button
                     onClick={handleLogin}
-                    className="relative mx-2 my-4 w-1/2 px-4 py-2 rounded-full bg-black isolation-auto z-10 border-2 border-neutral-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-white before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
+                    className="relative mx-2 my-4 w-1/2 px-4 py-2 rounded-full bg-black isolation-auto z-10 border-2 border-black before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-green-500 text-white before:-z-10 before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700"
                   >
                     Login
                   </button>
 
                   <div>
                     <h1>Don't have an account ?</h1>
-                    <NavLink to={'/register'}>
-                      <h1 className="hover:underline text-blue-500">
-                        Register Now
-                      </h1>
-                    </NavLink>
+                    <button
+                      onClick={() => {
+                        setIsOpen(false)
+                        setIsOpenReg(true)
+                        console.log(isOpenReg)
+                      }}
+                      className="hover:underline text-blue-500"
+                    >
+                      Register Now
+                    </button>
                   </div>
                 </div>
               </div>

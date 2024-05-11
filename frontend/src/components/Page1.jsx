@@ -1,7 +1,7 @@
 import React from 'react'
 const Page1 = () => {
   return (
-    <div className="w-full flex items-center justify-center py-8">
+    <div id="home" className="w-full flex items-center justify-center py-8">
       <div className="w-10/12 md:w-9/12 flex bg-[#e45834] flex-col md:flex-row rounded-xl shadow-lg overflow-hidden">
         <div className="w-full md:w-1/2 p-4 md:p-8 h-full">
           <h1 className="text-4xl md:text-[3.6vw] text-white font-bold leading-tight">

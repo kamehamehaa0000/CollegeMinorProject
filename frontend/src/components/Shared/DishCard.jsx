@@ -1,8 +1,12 @@
 import React from 'react'
-
-const DishCard = ({ name, description, price, image }) => {
+import { useCart } from '../contexts/cart.context'
+const DishCard = ({ name, description, price, image, id }) => {
+  const { addItemToCart } = useCart()
+  const handleAddToCart = () => {
+    addItemToCart({ id, name, price })
+  }
   return (
-    <div className=" group border-2 m-4 w-2/5 md:max-w-[240px] min-h-[400px] rounded-lg hover:scale-105 overflow-hidden bg-white">
+    <div className=" group border-2 m-4  md:max-w-[240px] min-h-[400px] rounded-lg hover:scale-105 overflow-hidden bg-white">
       <div>
         <img
           src={
@@ -21,7 +25,10 @@ const DishCard = ({ name, description, price, image }) => {
       </div>
       <div className="flex justify-between items-center p-2">
         <span className="font-bold text-sm sm:text-base">₹{price}</span>
-        <button className="bg-green-400 p-2 rounded-full text-white font-bold text-xs sm:text-sm">
+        <button
+          onClick={handleAddToCart}
+          className="bg-green-400 p-2 rounded-full text-white font-bold text-xs sm:text-sm"
+        >
           Add to cart
         </button>
       </div>
