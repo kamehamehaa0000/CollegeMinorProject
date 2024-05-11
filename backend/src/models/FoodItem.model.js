@@ -8,7 +8,6 @@ const foodItemSchema = new mongoose.Schema(
     image: { type: String, required: true },
     rating: {
       type: Number,
-      required: true,
       min: [0, "can't rate below that"],
       max: [5, "can't rate above that"],
     },

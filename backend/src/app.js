@@ -15,8 +15,17 @@ app.use(express.static('public'))
 import userRouter from './routes/user.routes.js'
 import reservation from './routes/reservation.routes.js'
 import adminRoutes from './routes/admin.routes.js'
+import foodItemRoutes from './routes/foodItems.routes.js'
+import menuRoutes from './routes/menu.routes.js'
+import orderRoutes from './routes/order.routes.js'
+import staffRoutes from './routes/staff.routes.js'
+
 app.use('/api/v1/', userRouter)
 app.use('/api/v1/reservation', reservation)
 app.use('/api/v1/admin', adminRoutes)
+app.use('/api/v1/fooditem', foodItemRoutes)
+app.use('/api/v1/menu', menuRoutes)
+app.use('/api/v1/order', orderRoutes)
+app.use('/api/v1/staff', staffRoutes)
 
 export default app

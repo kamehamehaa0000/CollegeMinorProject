@@ -2,9 +2,9 @@ import { v2 as cloudinary } from 'cloudinary'
 import fs, { unlinkSync } from 'fs'
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: 'dtql2ctxi',
+  api_key: 464498476381435,
+  api_secret: 'g_GzZ7mHToTg9HvqiJxEPKasiyE',
 })
 
 const uploadOnCloudinary = async (localPath) => {
@@ -32,5 +32,5 @@ const deleteFromCloudinary = async (url) => {
     console.error(`Error deleting image from Cloudinary: ${error.message}`)
   }
 }
-
+export { deleteFromCloudinary }
 export default uploadOnCloudinary

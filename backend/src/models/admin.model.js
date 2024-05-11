@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
 const adminSchema = new mongoose.Schema(
   {
     email: { type: String, unique: true, required: true, lowercase: true },
@@ -22,7 +25,7 @@ adminSchema.methods.generateToken = function () {
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+      expiresIn: '8d',
     }
   )
 }

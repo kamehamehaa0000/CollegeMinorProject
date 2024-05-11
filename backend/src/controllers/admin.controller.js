@@ -2,6 +2,7 @@ import Admin from '../models/Admin.model.js'
 import asyncHandler from '../utlities/asyncHandler.js'
 import errorHandler from '../utlities/errorHandler.js'
 import apiResponse from '../utlities/apiResponse.js'
+
 const registerAdmin = asyncHandler(async (req, res) => {
   const { password, email } = req.body
   if (!password || !email) {

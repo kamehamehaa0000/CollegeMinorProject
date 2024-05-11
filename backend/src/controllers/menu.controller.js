@@ -1,7 +1,7 @@
 import Menu from '../models/Menu.model.js'
-import asyncHandler from '../utilities/asyncHandler.js'
-import apiResponse from '../utilities/apiResponse.js'
-import errorHandler from '../utilities/errorHandler.js'
+import asyncHandler from '../utlities/asyncHandler.js'
+import apiResponse from '../utlities/apiResponse.js'
+import errorHandler from '../utlities/errorHandler.js'
 
 // Add a food item to the menu
 const addFoodItemToMenu = asyncHandler(async (req, res) => {
@@ -10,12 +10,13 @@ const addFoodItemToMenu = asyncHandler(async (req, res) => {
     throw new errorHandler(400, 'Food item ID is required')
   }
 
-  const menu = await Menu.findOne()
+  let menu = await Menu.findOne()
   if (!menu) {
-    throw new errorHandler(404, 'Menu not found')
+    menu = new Menu({ items: [foodItemId] })
+  } else {
+    menu.items.push(foodItemId)
   }
 
-  menu.items.push(foodItemId)
   const savedMenu = await menu.save()
   if (!savedMenu) {
     throw new errorHandler(500, 'Failed to add food item to the menu')
@@ -66,4 +67,15 @@ const deleteFoodItemFromMenu = asyncHandler(async (req, res) => {
     )
 })
 
-export { addFoodItemToMenu, deleteFoodItemFromMenu }
+// Get the menu
+const getMenu = asyncHandler(async (req, res) => {
+  const menu = await Menu.findOne().populate('items')
+  if (!menu) {
+    throw new errorHandler(404, 'Menu not found')
+  }
+  res
+    .status(200)
+    .json(new apiResponse(200, menu, 'Menu retrieved successfully'))
+})
+
+export { addFoodItemToMenu, deleteFoodItemFromMenu, getMenu }

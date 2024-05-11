@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema(
     cart: [
       {
         item: { type: mongoose.Schema.Types.ObjectId, ref: 'FoodItem' },
-        qty: { type: number, min: [1, 'atleast one qty is required'] },
+        qty: { type: Number, min: [1, 'atleast one qty is required'] },
         totalPrice: { type: Number, required: true },
       },
     ],
@@ -20,7 +20,7 @@ export default Order
 /* 
   add
   get all (admin)
-  get one (by id or name)
+  get one (by id)
   delete by id
 
 */
