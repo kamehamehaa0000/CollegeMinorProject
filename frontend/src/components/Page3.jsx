@@ -56,7 +56,7 @@ const Page3 = () => {
         gradientColor="white"
         direction="right"
       >
-        <h1 className="text-6xl tracking-tighter font-bold">
+        <h1 className="text-4xl md:text-5xl tracking-tighter font-bold">
           {'<<'}Wide selection of Dishes || Easy booking process || Faster
           takeaway & dine in || Wide selection of Dishes || Easy booking process
           || Faster takeaway & dine in ||{' '}

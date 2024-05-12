@@ -9,6 +9,7 @@ import { useCookies } from 'react-cookie'
 import OrderForm from './OrderForm'
 import Page3 from './Page3'
 import Reservation from './Reservation'
+import Page4 from './Page4'
 const Home = () => {
   const [cookie, setCookie] = useCookies(['authToken'])
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       <Page2 />
       <Page3 />
       <Reservation />
+      <Page4 />
       <Footer />
     </div>
   )

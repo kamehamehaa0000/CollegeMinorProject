@@ -2,12 +2,14 @@ import Reservation from '../models/Reservation.model.js'
 import asyncHandler from '../utlities/asyncHandler.js'
 import apiResponse from '../utlities/apiResponse.js'
 import errorHandler from '../utlities/errorHandler.js'
-
+import Restaurant from '../models/Restaurant.model.js'
 //add
 
 const addReservation = asyncHandler(async (req, res) => {
-  const { time, date, madeBy, phoneNumber } = req.body
-  if (!time || !madeBy || !phoneNumber || !date) {
+  const madeBy = req.user._id
+  console.log(req.user)
+  const { time, date, phoneNumber, heads } = req.body
+  if (!time || !madeBy || !phoneNumber || !date || !heads) {
     throw new errorHandler(400, 'all fields required')
   }
   const restaurant = await Restaurant.findOne({})
@@ -18,11 +20,12 @@ const addReservation = asyncHandler(async (req, res) => {
     throw new errorHandler(400, 'No slots available for reservation')
   }
 
-  const reservation = new Reservation.create({
+  const reservation = await Reservation.create({
     time,
     date,
     madeBy,
     phoneNumber,
+    heads,
   })
   if (!reservation) {
     throw new errorHandler(500, 'Reservation failed')
@@ -39,12 +42,12 @@ const addReservation = asyncHandler(async (req, res) => {
 //delete
 
 const deleteReservation = asyncHandler(async (req, res) => {
-  const phoneNumber = req.params.phoneNumber
-  if (!phoneNumber) {
+  const resID = req.params.resID
+  if (!resID) {
     throw new errorHandler(400, 'Phone number is required')
   }
 
-  const delReservation = await Reservation.findById(phoneNumber)
+  const delReservation = await Reservation.findByIdAndDelete(resID)
   if (!delReservation) {
     throw new errorHandler(400, 'reservation does not exist')
   }
@@ -65,11 +68,11 @@ const deleteReservation = asyncHandler(async (req, res) => {
 
 //get all reservation by userID
 const getAllReservationById = asyncHandler(async (req, res) => {
-  const userId = req.params.userId
-  if (!userId) {
+  const userID = req.user._id
+  if (!userID) {
     throw new errorHandler(400, 'user info is required')
   }
-  reservations = await Reservation.find({ madeBy: userId })
+  const reservations = await Reservation.find({ madeBy: userID })
   if (!reservations) {
     throw new errorHandler(400, 'no reservations found')
   }
@@ -82,7 +85,7 @@ const getAllReservationById = asyncHandler(async (req, res) => {
 
 //get all reservation
 const getAllReservation = asyncHandler(async (req, res) => {
-  reservations = await Reservation.find()
+  const reservations = await Reservation.find()
   if (!reservations) {
     throw new errorHandler(400, 'no reservations found')
   }

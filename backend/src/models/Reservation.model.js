@@ -12,7 +12,9 @@ const reservationSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
+      required: true,
     },
+    heads: { type: String, required: true },
   },
   { timestamps: true }
 )
