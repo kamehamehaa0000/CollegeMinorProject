@@ -25,6 +25,7 @@ const OrderForm = () => {
 
   const handlePlaceOrder = async () => {
     const cartDataForBackend = formatCartDataForBackend()
+    console.log(cartDataForBackend)
     try {
       setLoading(true)
       const response = await makeAuthenticatedPOSTrequest(

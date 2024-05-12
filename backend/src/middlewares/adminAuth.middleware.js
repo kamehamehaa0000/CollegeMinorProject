@@ -5,10 +5,11 @@ import jwt from 'jsonwebtoken'
 
 const verifyJWT = asyncHandler(async (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '')
+  console.log(token)
   if (!token) {
     throw new errorHandler(401, 'Unauthorised Request')
   }
-  console.log(token)
+
   const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
   const admin = await Admin.findById(decodedToken._id).select('-password')
   if (!admin) {

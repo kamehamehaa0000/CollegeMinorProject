@@ -60,12 +60,12 @@ const updateStaffMember = asyncHandler(async (req, res) => {
     throw new errorHandler(400, 'Staff member ID is required')
   }
 
-  const { phoneNumber, shift, name } = req.body
+  const { phoneNumber, shift, name, dateOfJoining } = req.body
   const updatedFields = {}
   if (phoneNumber) updatedFields.phoneNumber = phoneNumber
   if (shift) updatedFields.shift = shift
   if (name) updatedFields.name = name
-
+  if (dateOfJoining) updatedFields.dateOfJoining = dateOfJoining
   const updatedStaffMember = await Staff.findByIdAndUpdate(
     staffId,
     updatedFields,
@@ -86,4 +86,23 @@ const updateStaffMember = asyncHandler(async (req, res) => {
     )
 })
 
-export { addStaffMember, deleteStaffMember, updateStaffMember }
+// Get all staff members
+const getAllStaffMembers = asyncHandler(async (req, res) => {
+  const allStaffMembers = await Staff.find({})
+  res
+    .status(200)
+    .json(
+      new apiResponse(
+        200,
+        allStaffMembers,
+        'All staff members retrieved successfully'
+      )
+    )
+})
+
+export {
+  addStaffMember,
+  deleteStaffMember,
+  updateStaffMember,
+  getAllStaffMembers,
+}
