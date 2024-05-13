@@ -107,6 +107,8 @@ const getOrderById = asyncHandler(async (req, res) => {
 const getAllOrdersByUser = asyncHandler(async (req, res) => {
   const userId = req.user._id
   const orders = await Order.find({ placedBy: userId })
+    .populate('cart.item')
+    .populate('placedBy')
   if (!orders || orders.length === 0) {
     throw new errorHandler(404, 'No orders found')
   }

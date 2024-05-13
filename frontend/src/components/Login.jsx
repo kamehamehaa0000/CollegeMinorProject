@@ -3,7 +3,6 @@ import loginModalContext from './contexts/loginModal.context.js'
 import TextInput from './Shared/TextInput.jsx'
 import { makeUnauthenticatedPOSTrequest } from '../utilities/apiCall.js'
 import { dotStream } from 'ldrs'
-import { NavLink, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import registrationModelContext from './contexts/registerationModal.context.js'
 dotStream.register()
@@ -12,7 +11,6 @@ const Login = () => {
   const { isOpen, setIsOpen } = useContext(loginModalContext)
   const { isOpenReg, setIsOpenReg } = useContext(registrationModelContext)
   const [cookie, setCookie, removeCookie] = useCookies(['authToken'])
-  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)

@@ -5,11 +5,14 @@ import cartModalContext from './components/contexts/cartModal.context.js'
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './components/Home'
+import { useCookies } from 'react-cookie'
+import UserPanel from './components/UserPanel.jsx'
+import Page1 from './components/Page1.jsx'
 function App() {
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenReg, setIsOpenReg] = useState(false)
   const [isOpenCart, setIsOpenCart] = useState(false)
-
+  const [cookies] = useCookies(['authToken'])
   return (
     <div className="w-screen h-screen font-[Gilroy] flex-col flex overflow-x-hidden">
       <loginModalContext.Provider value={{ isOpen, setIsOpen }}>
@@ -21,6 +24,11 @@ function App() {
               <Routes>
                 <Route path="/home" element={<Home />} />
                 <Route path="/*" element={<Home />} />
+                {cookies.authToken && (
+                  <>
+                    <Route path="/user" element={<UserPanel />} />
+                  </>
+                )}
               </Routes>
             </BrowserRouter>
           </registrationModalContext.Provider>

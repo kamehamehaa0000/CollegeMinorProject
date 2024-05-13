@@ -34,8 +34,11 @@ const Navbar = ({ isLoggedIn, userDets }) => {
       <div className="flex font-semibold items-center gap-2 md:gap-4">
         {isLoggedIn ? (
           <>
-            <h1 className="capitalize">{`Hey, ${cookies?.details?.username[0]}`}</h1>
-            <button className="text-sm md:text-lg" onClick={handleLogout}>
+            <a
+              href="/user"
+              className="capitalize"
+            >{`Hey, ${cookies?.details?.username[0]}`}</a>
+            <button className="text-sm md:text-md" onClick={handleLogout}>
               Logout
             </button>
           </>
